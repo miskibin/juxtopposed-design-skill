@@ -1,45 +1,27 @@
-# Pre-ship checklist
+# Before calling a design done
 
-Run through this before declaring any UI done. Fix every "no".
+Answer honestly. Any "no" is a reason to go back.
 
-## Method
-- [ ] I can state the user's primary goal on this screen in one sentence.
-- [ ] I named at least one generic pattern I rejected and why (Oppose).
-- [ ] The primary content is a clear monolith; secondary/promotional streams are collapsible or separate.
-- [ ] The most frequent action is reachable in one interaction.
+## Observe
+- Can I state, in one sentence, what the user is trying to do here?
+- Do I know the most frequent actions and the device/context of use?
+- Have I identified which parts of the design serve the user and which serve other interests?
 
-## Layout & ergonomics
-- [ ] Spacing uses the 4/8 scale; cards have ≥ 16 px padding; sections breathe.
-- [ ] Mobile: primary actions in the bottom third; touch targets ≥ 44 px; nothing essential in top corners.
-- [ ] Mobile layout was designed for one hand, not shrunk from desktop.
-- [ ] Owned content and sales/growth surfaces are separated.
+## Oppose
+- Did I name at least one default pattern I chose not to use, and why?
+- Is anything competing with the main content for attention?
+- Is anything hidden that people need often?
+- Is any stylistic choice making something harder to read or operate?
 
-## Color
-- [ ] 3–6 color tokens (+ semantic states). No ad-hoc hex values in components.
-- [ ] Roughly 60/30/10; accent ≤ 10% of the screen.
-- [ ] Body text ≥ 7:1, muted ≥ 4.5:1, meaningful UI boundaries ≥ 3:1 (`scripts/contrast.py`).
-- [ ] No pure `#000` background or pure `#fff` text in dark mode; no pure `#fff` page canvas in light mode.
-- [ ] Dark mode depth comes from lighter surfaces, not shadows.
-- [ ] Both light and dark themes ship and were looked at.
-
-## Typography
-- [ ] Display face for headings only; neutral sans for body; mono only for technical labels.
-- [ ] All sizes come from the modular scale.
-- [ ] Text containers ≤ 65ch; body line-height 1.5–1.6.
-- [ ] Signature/decorative styles are not used on functional text (clocks, forms, settings, tables).
-
-## Materiality
-- [ ] Cards 16–24 px radius; buttons/chips pill.
-- [ ] Layer separation via 1 px hairlines ≤ 12% opacity; no heavy drop shadows.
-- [ ] Sticky/floating bars use progressive blur or a tinted scrim, with legible text.
-
-## Motion & accessibility
-- [ ] UI transitions 150–250 ms with `cubic-bezier(0.16, 1, 0.3, 1)`; none linear, none > 400 ms.
-- [ ] Only transform/opacity/color animate; input is never blocked by animation.
-- [ ] `prefers-reduced-motion` respected.
-- [ ] Visible `:focus-visible` ring in accent; full keyboard navigation; semantic HTML and labels.
-
-## Emotional ergonomics
-- [ ] Notifications are quiet (dot/count), not flooding red.
-- [ ] No more panels open at once than the task needs.
-- [ ] Would this feel calm to a non-technical user?
+## Upscale
+- Is there one clear center of attention per screen?
+- Are the most frequent actions the most direct?
+- Are owned/personal areas separated from promotional or sales areas?
+- Does the mobile version work comfortably with one hand, rather than imitate desktop?
+- Do type, spacing, color and shapes come from a consistent system?
+- Is color used sparingly enough that emphasis still means something?
+- Is contrast comfortable and accessible in every theme, without harsh extremes?
+- Does the product have its own identity — and does that identity stay out of the way of function?
+- Does it feel calm? Would a non-technical person feel at ease?
+- Does it respond immediately and tangibly, without making anyone wait?
+- Are accessibility basics covered: keyboard, focus, labels, reduced motion?

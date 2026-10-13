@@ -1,20 +1,12 @@
 # juxtopposed-design-skill
 
-**Observe. Oppose. Upscale.** — an Agent Skill that teaches Claude (and other skill-aware agents) an
-opinionated, anti-generic UI/UX design language: flow-first process, 60-30-10 color, tinted-graphite
-dark mode, a modular type scale, soft geometry, progressive blur and fast spring-like motion.
+**Observe. Oppose. Upscale.** — an Agent Skill that gives Claude (and other skill-aware agents) a
+design *philosophy*, not a design template. It changes how the model thinks about interfaces:
+whose interest each part of a screen serves, where attention goes, what friction costs, when
+identity helps and when it gets in the way, and how software should feel.
 
-![Light mode demo](assets/demo_light_1280.png)
-
-<p>
-  <img src="assets/demo_dark_1280.png" width="72%" alt="Dark mode demo">
-  <img src="assets/demo_dark_390.png" width="22%" alt="Mobile dark demo">
-</p>
-
-> **Unofficial.** A research-based interpretation of the public design commentary of the YouTube creator
-> [Juxtopposed](https://www.youtube.com/@juxtopposed) (redesign series, UI course, Realtime Colors).
-> Not affiliated with or endorsed by the creator. Exact hex values, fonts and numbers are codified
-> defaults for an AI to follow, not quotes.
+> **Unofficial.** A research-based interpretation of the public design commentary of the YouTube
+> creator [Juxtopposed](https://www.youtube.com/@juxtopposed). Not affiliated with or endorsed by the creator.
 
 ## Install (pick one)
 
@@ -41,7 +33,7 @@ git clone https://github.com/miskibin/juxtopposed-design-skill
 Copy-Item -Recurse juxtopposed-design-skill\skills\juxtopposed-design $HOME\.claude\skills\
 ```
 
-For a single project only, copy it to `<your-project>/.claude/skills/` instead.
+For a single project, copy it to `<your-project>/.claude/skills/` instead.
 
 ### Claude.ai / Claude Desktop
 
@@ -51,46 +43,48 @@ For a single project only, copy it to `<your-project>/.claude/skills/` instead.
 
 ### Other agents
 
-The skill is a plain folder with a `SKILL.md`. Point any skill-aware agent at
-`skills/juxtopposed-design/`, or paste `SKILL.md` into a system prompt.
+It's a plain folder with a `SKILL.md`. Point any skill-aware agent at `skills/juxtopposed-design/`,
+or paste `SKILL.md` into a system prompt.
 
 ## Use it
 
-It triggers automatically on UI work. You can also ask explicitly:
+It triggers automatically on UI/UX work. Or ask directly:
 
-- "Build a settings page for my app in the Juxtopposed style."
-- "Critique our dashboard — Observe, Oppose, Upscale."
-- "Make me a dark mode that doesn't hurt on OLED."
-- "Generate a 5-token palette and check its contrast."
+- "Design the onboarding for my app — Observe, Oppose, Upscale."
+- "Critique our dashboard. What is it doing to its users?"
+- "This feels generic and corporate. Make it ours without hurting usability."
+- "Redesign this settings screen for one-handed use."
+
+## The philosophy in brief
+
+Interfaces exist to serve people, not metrics. UI and UX are one thing: beauty without ergonomics
+is decoration, correctness without identity is apathy.
+
+1. **Purpose before pixels** — flow → structure → system → visuals; style comes last.
+2. **Protect attention** — one clear center; secondary and promotional content never competes with it.
+3. **Reduce friction** — the most frequent actions are the most direct.
+4. **Separate contexts** — what people own is not a sales surface.
+5. **Design for the body** — ergonomics over cross-platform symmetry; phones are used with a thumb.
+6. **Systems over one-off decisions** — scales and tokens make products coherent.
+7. **Color is relational** — few colors, clear roles, scarce emphasis, comfortable contrast.
+8. **Typography is architecture** — an expressive voice for character, a quiet one for work.
+9. **Restraint with style** — identity is an accent; it never costs usability.
+10. **Emotional ergonomics** — calm over overstimulation.
+11. **Material and motion are feedback** — tangible, immediate, never in the way.
+12. **Fit the medium** — the interface can take on the mood of its content.
 
 ## What's inside
 
 ```
 skills/juxtopposed-design/
-├── SKILL.md                  # the rules the model follows
+├── SKILL.md                  # the philosophy and how to apply it
 ├── references/
-│   ├── philosophy.md         # method, process, case studies → 6 rules
-│   ├── color.md              # 60-30-10, palette algorithm, dark mode, WCAG table
-│   ├── typography.md         # pairings, modular scales, measure
-│   ├── materiality.md        # radii, hairlines, progressive blur, grain, motion code
-│   ├── tokens.css            # drop-in CSS variables, light + dark
-│   ├── tokens.md             # Tailwind v4/v3 mapping + class recipes
-│   └── checklist.md          # pre-ship review
-├── scripts/contrast.py       # WCAG checker: `python contrast.py --audit tokens.css`
-└── examples/demo.html        # reference page (screenshots above)
+│   ├── philosophy.md         # method, process, UI/UX, identity, calm, craft
+│   ├── critique.md           # how to critique + case studies (YouTube, Spotify, Discord, Nothing OS, Steam, Apple Music)
+│   ├── heuristics.md         # rules of thumb (color, type, space, form, motion) — each with its reason
+│   └── checklist.md          # questions before calling a design done
+└── scripts/contrast.py       # WCAG contrast checker
 ```
-
-## The rules in one screen
-
-| Area | Rule |
-|---|---|
-| Process | Flow → wireframe → tokens → hi-fi. Never style first. |
-| Ergonomics | Content isolation, friction reduction, context decoupling; mobile is thumb-first. |
-| Color | 3–6 tokens, 60-30-10, body text ≥ 7:1, no `#000`/`#fff` dark mode — tinted graphite with lighter raised surfaces. |
-| Type | Expressive display + neutral text face, Major Third 1.250 scale, ≤ 65ch lines. |
-| Material | 16–24 px cards, pill buttons, 1 px hairlines instead of shadows, progressive blur, subtle grain. |
-| Motion | 150–250 ms, `cubic-bezier(0.16, 1, 0.3, 1)`, honor reduced motion. |
-| Restraint | Signature styles only as accents — never on functional text. |
 
 ## License
 

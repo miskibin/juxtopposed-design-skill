@@ -1,108 +1,100 @@
 ---
 name: juxtopposed-design
-description: Opinionated UI/UX design language inspired by the Juxtopposed channel ("Observe. Oppose. Upscale."). Use when building, styling, redesigning or reviewing any user interface — web pages, apps, dashboards, components, landing pages, mobile screens, design systems, color palettes, dark mode, typography scales — or when the user asks for a "Juxtopposed style", "cozy UI", "soft modern", "less generic / less corporate" design, a UI critique or a redesign of an existing product. Enforces flow-first process, 60-30-10 color, tinted-graphite dark mode, modular type scale, soft geometry, progressive blur and fast spring-like motion.
+description: A design philosophy inspired by the Juxtopposed channel ("Observe. Oppose. Upscale."). Use whenever designing, building, redesigning or critiquing any interface — apps, websites, dashboards, tools, mobile screens, design systems — and whenever the user wants a less generic, less corporate, more humane or "cozy" UI, a UX critique, or a redesign of an existing product. It shapes how to think about a design (user goals, attention, friction, identity, restraint, emotion), not a fixed visual style.
 ---
 
-# Juxtopposed Design Language
+# Juxtopposed design philosophy
 
-An executable design language against sterile, corporate, component-library sameness.
-Every interface you produce must be **ergonomic first, distinctive second, and never one without the other**:
-pretty without a skeleton is decoration; correct without identity is apathy.
+This is a way of thinking, not a visual template. Do not make every interface look the same —
+that is exactly what this philosophy opposes. Apply the reasoning; let the product, its users and
+its brand decide the look.
 
-> Unofficial. A research-based interpretation of public videos and tools by the creator Juxtopposed
-> (Realtime Colors, redesign series, UI course). Exact hex values and fonts below are codified defaults,
-> not quotes. Not affiliated with or endorsed by the creator.
+> Unofficial. A research-based interpretation of the public design commentary of the creator
+> Juxtopposed. Not affiliated with or endorsed by the creator.
 
-## The method: Observe → Oppose → Upscale
+## The core belief
 
-Apply it to every task, including small ones. Do it silently for code tasks; write it out for critiques.
+Interfaces exist to serve people, not metrics. Much of today's software is sterile and
+interchangeable (same component libraries, same layouts, same feeds) and quietly works against its
+users: it extracts attention, buries simple actions, and lets business pressure leak into the
+screen. Good design notices those compromises, refuses them, and rebuilds with more care.
 
-1. **Observe** — Who uses this, for what goal, how often, on which device, with how many hands? What compromise did business/tech impose on them (ads, upsells, feature creep, monetised attention)?
-2. **Oppose** — Name the generic pattern you are about to copy by reflex (hero + 3 feature cards, sidebar-everything, gray SaaS dashboard, endless feed) and decide whether it actually serves the goal. Reject it if it does not.
-3. **Upscale** — Rebuild with discipline: fewer steps, clear hierarchy, mathematical color and type, tactile materiality.
+Two consequences run through everything:
+- **UI and UX are one thing.** Beauty without an ergonomic skeleton is decoration. Correctness
+  without identity is apathy and fatigue. Never deliver one without the other.
+- **Personality is allowed — and must earn its place.** Character is good; character that costs
+  usability is not.
 
-## Mandatory process (never skip to styling)
+## The loop: Observe → Oppose → Upscale
 
-1. **Flow** — list the user's steps and decision points (text is fine). Remove every step that is not needed.
-2. **Wireframe** — layout and hierarchy only: what is the single primary zone, what is secondary, what is collapsible.
-3. **System** — define tokens *before* components: type scale, spacing scale, 3–6 color tokens, radii, motion. Use `references/tokens.css` as the starting point.
-4. **Compose** — only now build hi-fi UI, consuming tokens exclusively. No ad-hoc hex values or pixel sizes in components.
+Run it on every task, large or small.
 
-For one-off components, steps 1–2 can be a two-line comment; step 3 still applies (reuse existing tokens if the project has them — never fight an existing design system, adapt the rules to it).
+**Observe** — understand before drawing.
+- Who is this for, what are they trying to do, how often, in what situation, on what device, with how many hands?
+- What does the current design (or the obvious default) make them do that they would not choose?
+- Which compromises came from business or technology rather than the user — ads, upsells, engagement loops, feature creep, legacy structure?
 
-## Hard rules (treat as constraints, not suggestions)
+**Oppose** — question the reflex.
+- Name the pattern you are about to copy because "everyone does it". Does it serve this user's goal?
+- Name what is fighting the user: competing content, hidden actions, noise, forced consistency, style over readability.
+- Keep what works. Opposing is not novelty for its own sake; it is refusing what does not serve people.
 
-### Ergonomics & structure
-- **Content isolation** — the thing the user came for (video, document, conversation, editor) is the monolith. Discussion/reflection zones never compete for the same space as algorithmic or promotional streams; put recommendations in modular, collapsible zones.
-- **Friction reduction** — the most frequent actions are reachable in ≤1 interaction from where the user already is. No core action hidden in nested menus. Prefer direct, contextual filter chips over dropdown trees.
-- **Context decoupling** — "things I own / my workspace" is visually and structurally separate from "things to buy / growth surfaces".
-- **Mobile is thumb-first, not desktop-shaped** — primary actions in the bottom third, bottom navigation or floating island, targets ≥ 44×44 px (48 preferred), no essential controls in top corners. Cross-platform consistency is brand-level (color, type, voice), never forced layout symmetry.
-- **Breathing room** — generous padding (cards ≥ 16–24 px, sections 48–96 px vertical), spacing on a 4/8 px scale, asymmetry allowed when it clarifies hierarchy. Never pack panels edge to edge.
+**Upscale** — rebuild with discipline.
+- Fewer steps, clearer hierarchy, a coherent system, and a deliberate identity.
+- Then refine the craft: how it feels to touch, how it responds, how it reads, how calm it is.
 
-### Color
-- **3–6 color tokens total** on any screen: `bg`, `text`, `primary`, `secondary`, `accent` (+ optional `muted`). Semantic states (error/success) are the only extras.
-- **60-30-10** — ~60% base background, ~30% structural surfaces (cards, nav, panels), ≤10% primary/accent (CTA, focus, active state, badges). Never flood whole sections with saturated brand color.
-- **Pick in order**: background + text → primary (main CTA) → secondary (cards, secondary controls) → accent (tiny interactive details). Judge colors on a real layout, never as isolated swatches.
-- **Contrast (WCAG 2.2)**: body text ≥ 7:1 (AAA target), muted text ≥ 4.5:1, UI component boundaries and large text ≥ 3:1. Verify with `scripts/contrast.py`.
-- **Light mode**: off-white base (`#f8f9fa`–`#f4f4f6`), not pure `#fff` page backgrounds; text is deep anthracite (`#141619`–`#1a1a1e`), not `#000`.
-- **Dark mode**: **never `#000000` background with `#ffffff` text** (21:1 → halation on OLED). Use tinted graphite (`#0c0e12`–`#121316`, slightly blue or warm) and softened white (`#e6e8ec`). Express depth by **lightening surfaces as they rise** (base → surface → raised), not by shadows. Primary/accent get +10–15% luminance vs light mode.
+## Principles
 
-### Typography
-- **Two voices**: an expressive display face for headings (Syne, Clash Display, Cabinet Grotesk) + a neutral, open-aperture sans for text (Inter, Plus Jakarta Sans, General Sans). Monospace (JetBrains Mono) for technical metadata, labels, numbers in tools.
-- **Modular scale**: default Major Third **1.250** from 16 px (12.8 / 16 / 20 / 25 / 31.25 / 39.06 / 48.83 / 61.04). Marketing/expressive: Perfect Fourth 1.333. Dense admin/data UI: Minor Second 1.067. No off-scale sizes.
-- **Measure**: body text 45–75 characters per line → `max-width: 65ch`. Line-height 1.5–1.6 body, 1.2 headings, 1.1 display.
-- Display headings: tight tracking (`-0.02em` to `-0.03em`), max 2–3 lines.
-- **Stylistic restraint** — a signature style (dot-matrix, pixel, ultra-condensed, script) is an accent for a few expressive headings only. Never on clocks, timers, settings, forms, tables, or anything read under time pressure.
+1. **Purpose before pixels.** Work in order: user flow → rough structure → design system → final visuals. Styling is the last step, an execution of decisions already made. Even for a small component, know the flow and the hierarchy before choosing colors.
 
-### Materiality
-- **Soft geometry**: cards `border-radius: 16–24px` (default 20), buttons/chips/tags pill `9999px`, inputs 12–14 px. Nested radius = outer radius − padding.
-- **Borders, not drop shadows**: separate layers with 1 px hairlines at 6–12% opacity (`rgba(0,0,0,.06)` light / `rgba(255,255,255,.08)` dark). Heavy blurry black box-shadows are forbidden; at most a very soft, low-opacity ambient shadow for floating elements.
-- **Progressive blur** for sticky bars and floating islands: stacked `backdrop-filter` layers with gradient masks so content fades out of focus near the edge instead of disappearing under a flat frosted pane. See `references/materiality.md`.
-- **Grain**: optional monochrome SVG noise at 2–5% opacity on large gradients/backgrounds to kill banding and add paper-like texture.
-- **Floating islands**: navigation/player bars may float 12–16 px off the screen edge with pill or 20–24 px radius.
+2. **Protect attention.** Decide what the user came for and make it the center. Secondary and promotional content must not compete with it for the same space; give it its own, ideally collapsible, place. Never design to make people scroll, click or stay against their own interest.
 
-### Motion
-- Micro-interactions **150–250 ms**, easing `cubic-bezier(0.16, 1, 0.3, 1)` (instant start, soft landing). Nothing linear, nothing > 400 ms for UI feedback.
-- Press feedback: `hover: scale(1.02)`, `active: scale(0.98)`; animate `transform`/`opacity` only.
-- Always honor `prefers-reduced-motion`.
+3. **Reduce friction where it matters most.** The most frequent actions should be the most direct. Do not hide everyday operations in menus or behind extra steps. Every interaction in between is a cost the user pays.
 
-### Emotional ergonomics ("cozy UI")
-Social and communication spaces should calm, not overstimulate: warmer dark tones, rounder forms, more internal padding, quieter notifications (dot/count, no flashing red floods), fewer simultaneous vertical panels (collapse what is not in use).
+4. **Separate contexts.** What the user owns, makes or manages is a different place from what someone is trying to sell them. Mixing them erodes trust and clarity.
 
-### Sensory contextualization
-Media players may adapt mood to the content: background tinted from artwork palette, smooth state transitions, synced lyrics/transcript in the focus area — while text contrast rules still hold.
+5. **Design for the body and the device.** Ergonomics come before visual consistency across platforms. A phone is used with one hand and a thumb; a desktop with a pointer and a wide screen. Share identity (color, type, tone) across platforms, not identical layouts.
 
-## Anti-patterns — reject on sight
+6. **Systems over one-off decisions.** Define scales and tokens — type sizes, spacing, color roles, radii, motion — and design from them. Constraints make a product coherent, make choices faster, and keep identity consistent. When a project already has a system, work within it.
 
-- Pure `#000` / `#fff` pairs in dark mode; pure `#fff` page canvas in light mode.
-- More than 6 colors; saturated full-width section backgrounds; random per-component colors.
-- Default system font stack as the only typeface where identity matters; decorative fonts for body text; off-scale sizes; lines > 75ch.
-- Sharp corners without reason; heavy drop shadows; thick (≥2 px) borders as decoration.
-- Linear or slow (> 400 ms) transitions; animations that delay input.
-- Core actions in kebab menus / 3-level dropdowns; desktop layout shrunk onto mobile; primary buttons in top corners on mobile.
-- Recommendation/ad/shorts streams injected into the primary content zone; comments squeezed into a side column.
-- The generic AI landing page: centered hero + gradient blob + three identical icon cards + gray footer. If your output looks like that, go back to Oppose.
+7. **Color is relational and hierarchical.** Judge colors on a real layout, never as isolated swatches. Use few colors with clear roles. Let most of the surface be calm and reserve strong color for what deserves attention; an accent that is everywhere stops meaning anything. Contrast is about comfort, not maximum: readable for everyone, never harsh (dark mode is not pure black with pure white).
 
-## Output contract
+8. **Typography is architecture.** Type carries both identity and information. Let an expressive voice set the character where it is safe to (headlines, moments) and a quiet, highly legible voice do the work. Keep sizes on a consistent scale and lines at a comfortable reading length.
 
-When **building** UI:
-1. Start from tokens (`references/tokens.css`, or the Tailwind v4 `@theme` block in `references/tokens.md`). Ship light + dark.
-2. Components consume tokens only (`var(--bg-surface)`, `bg-surface`, etc.).
-3. Before finishing, run the checklist in `references/checklist.md` and fix violations. Run `python scripts/contrast.py` on any custom palette.
+9. **Restraint with style.** A signature look is an accent, not a rule to apply everywhere. The moment a stylistic choice slows down reading or operating something important — time, settings, forms, data — it has gone too far.
 
-When **critiquing / redesigning** an existing product, answer in this shape:
-- **Observe** — user goals + the compromises the current UI imposes (cite concrete screens/elements).
-- **Oppose** — the patterns you reject and why (map each to a rule: Content Isolation, Friction Reduction, Context Decoupling, Emotional Ergonomics, Stylistic Restraint, Sensory Contextualization).
-- **Upscale** — the redesign: flow, layout, tokens, and the specific changes; then code or a mockup if asked.
+10. **Emotional ergonomics.** Software has a mood. Prefer calm over overstimulation: breathing room, softer forms, warmer tones where it fits, quiet notifications, fewer things demanding attention at once. People should feel at ease, especially non-technical users.
 
-## References (load as needed)
+11. **Materiality and motion are feedback, not decoration.** Depth, texture and animation should make the interface feel tangible and responsive — layers that read as layers, controls that answer the touch immediately. Motion is quick and purposeful; it never makes the user wait and always respects reduced-motion preferences.
 
-- `references/philosophy.md` — method, process, UI vs UX, case studies (YouTube, Spotify, Discord, Nothing OS, Steam, Apple Music) and the rules they produced.
-- `references/color.md` — 60-30-10, the 4-step palette algorithm, dark-mode elevation, contrast table.
-- `references/typography.md` — font pairings, scales with computed sizes, measure, rhythm.
-- `references/materiality.md` — radii, borders, progressive blur, noise, floating islands, motion code.
-- `references/tokens.css` — drop-in CSS custom properties (light + dark).
-- `references/tokens.md` — Tailwind v4 `@theme` + Tailwind v3 config + utility-class recipes.
-- `references/checklist.md` — pre-ship review checklist.
-- `scripts/contrast.py` — WCAG contrast checker (no dependencies).
-- `examples/demo.html` — a reference page implementing the whole system.
+12. **Let the interface fit its content.** A space for music, video, reading or conversation can take on the mood of what it presents, as long as clarity and readability hold.
+
+## How to apply it
+
+**When building**, before writing UI code, settle in a few lines: the user's goal, the primary content, the most frequent actions, the device context, and the patterns you are deliberately not using. Then define or reuse the system, then compose. Finish with `references/checklist.md`.
+
+**When critiquing or redesigning**, structure the answer as:
+- **Observe** — goals, habits, and the concrete compromises the current design imposes (point at real screens/elements).
+- **Oppose** — what you reject and which principle it violates.
+- **Upscale** — the redesigned flow and structure, the system decisions, the identity, then visuals or code if asked.
+
+**Concrete numbers** (color proportions, type scale ratios, line length, radii, timing) are in `references/heuristics.md`. They are rules of thumb that express the principles — adapt them to the brand and the existing system; never apply them as a fixed house style.
+
+## What this philosophy rejects
+
+- The interchangeable default: the same hero, the same three feature cards, the same gray dashboard, regardless of who the product is for.
+- Interfaces that treat attention as a resource to extract.
+- Everyday actions buried under menus and extra steps.
+- Desktop layouts squeezed onto phones, or forced symmetry that ignores how devices are held.
+- Color used everywhere, so nothing stands out; harsh or insufficient contrast.
+- Style that wins against legibility.
+- Noisy, cold, crowded spaces where calm would serve people better.
+- Decoration without function, and motion that delays the user.
+
+## References
+
+- `references/philosophy.md` — the method, the process and the UI/UX relationship in more depth.
+- `references/critique.md` — how to run a critique, with case studies (YouTube, Spotify, Discord, Nothing OS, Steam, Apple Music) and the principles they illustrate.
+- `references/heuristics.md` — rules of thumb for color, contrast, type, spacing, form and motion, each tied to its reason.
+- `references/checklist.md` — questions to ask before calling a design done.
+- `scripts/contrast.py` — WCAG contrast checker (`python scripts/contrast.py "#fg" "#bg"`).

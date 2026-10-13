@@ -1,7 +1,7 @@
 {
   "name": "juxtopposed-design",
-  "version": "1.0.0",
-  "description": "Opinionated UI/UX design skill inspired by Juxtopposed: Observe. Oppose. Upscale. Flow-first process, 60-30-10 color, tinted-graphite dark mode, modular type, soft geometry, progressive blur, fast spring motion.",
+  "version": "2.0.0",
+  "description": "A design philosophy inspired by Juxtopposed — Observe. Oppose. Upscale. How to think about interfaces: attention, friction, ergonomics, systems, identity with restraint, calm.",
   "author": { "name": "miskibin" },
   "repository": "https://github.com/miskibin/juxtopposed-design-skill",
   "license": "MIT",

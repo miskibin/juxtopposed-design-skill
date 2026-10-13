@@ -2,34 +2,21 @@
 """WCAG 2.2 contrast checker. No dependencies.
 
 Usage:
-    python contrast.py "#141619" "#f8f9fa"         # one pair
-    python contrast.py --audit tokens.css          # check the token pairs in a tokens.css file
+    python contrast.py "#141619" "#f8f9fa"
+    python contrast.py "#e8eaed" "#0c0e12" "#9aa0a6" "#0c0e12"   # several fg/bg pairs
 
-Exit code 1 if any audited pair fails its minimum.
+Guide: body text ~7:1 (AAA), secondary text >= 4.5:1 (AA), large text and UI boundaries >= 3:1.
 """
 
 import re
 import sys
-
-# (foreground token, background token, minimum ratio, label)
-AUDIT_PAIRS = [
-    ("--text-main", "--bg-base", 7.0, "body text on canvas (AAA)"),
-    ("--text-main", "--bg-surface", 7.0, "body text on card (AAA)"),
-    ("--text-muted", "--bg-base", 4.5, "muted text on canvas (AA)"),
-    ("--text-muted", "--bg-surface", 4.5, "muted text on card (AA)"),
-    ("--on-primary", "--primary", 4.5, "button label on primary"),
-    ("--primary", "--bg-base", 4.5, "primary fill vs canvas"),
-    ("--accent", "--bg-base", 4.5, "accent as text/link on canvas"),
-    ("--accent", "--bg-surface", 4.5, "accent as text/link on card"),
-    ("--on-accent", "--accent", 4.5, "label on accent fill"),
-]
 
 
 def parse_hex(value: str) -> tuple[float, float, float]:
     h = value.strip().lstrip("#")
     if len(h) == 3:
         h = "".join(c * 2 for c in h)
-    if len(h) != 6 or not re.fullmatch(r"[0-9a-fA-F]{6}", h):
+    if not re.fullmatch(r"[0-9a-fA-F]{6}", h):
         raise ValueError(f"not a hex color: {value!r}")
     return tuple(int(h[i : i + 2], 16) / 255 for i in (0, 2, 4))
 
@@ -53,53 +40,19 @@ def grade(r: float) -> str:
     if r >= 4.5:
         return "AA"
     if r >= 3:
-        return "AA-large / UI"
+        return "AA large text / UI only"
     return "FAIL"
 
 
-def blocks(css: str) -> dict[str, dict[str, str]]:
-    """Return {'light': {...}, 'dark': {...}} hex tokens from a tokens.css file."""
-    themes: dict[str, dict[str, str]] = {"light": {}, "dark": {}}
-    for selector, body in re.findall(r"([^{}]+)\{([^{}]*)\}", css):
-        selector = selector.strip()
-        if ":root" not in selector or ":not(" in selector:  # the media-query copy duplicates [data-theme="dark"]
-            continue
-        theme = "dark" if 'data-theme="dark"' in selector else "light"
-        if theme is None:
-            continue
-        for name, val in re.findall(r"(--[\w-]+)\s*:\s*(#[0-9a-fA-F]{3,6})\b", body):
-            themes[theme][name] = val
-    themes["dark"] = {**themes["light"], **themes["dark"]}
-    return themes
-
-
-def audit(path: str) -> int:
-    with open(path, encoding="utf-8") as f:
-        themes = blocks(f.read())
-    failures = 0
-    for theme, tokens in themes.items():
-        print(f"\n[{theme}]")
-        for fg, bg, minimum, label in AUDIT_PAIRS:
-            if fg not in tokens or bg not in tokens:
-                continue
-            r = ratio(tokens[fg], tokens[bg])
-            ok = r >= minimum
-            failures += not ok
-            mark = "ok  " if ok else "FAIL"
-            print(f"  {mark} {r:5.2f}:1 (min {minimum}) {label}: {tokens[fg]} on {tokens[bg]}")
-    print(f"\n{failures} failing pair(s)")
-    return 1 if failures else 0
-
-
 def main(argv: list[str]) -> int:
-    if len(argv) == 3 and argv[1] == "--audit":
-        return audit(argv[2])
-    if len(argv) == 3:
-        r = ratio(argv[1], argv[2])
-        print(f"{r:.2f}:1  {grade(r)}")
-        return 0
-    print(__doc__)
-    return 2
+    colors = argv[1:]
+    if not colors or len(colors) % 2:
+        print(__doc__)
+        return 2
+    for fg, bg in zip(colors[::2], colors[1::2]):
+        r = ratio(fg, bg)
+        print(f"{fg} on {bg}: {r:.2f}:1  {grade(r)}")
+    return 0
 
 
 if __name__ == "__main__":
