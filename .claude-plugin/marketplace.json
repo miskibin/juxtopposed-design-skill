@@ -1,0 +1,16 @@
+{
+  "name": "juxtopposed-design-skill",
+  "owner": {
+    "name": "miskibin"
+  },
+  "metadata": {
+    "description": "Juxtopposed-inspired UI/UX design skill for Claude"
+  },
+  "plugins": [
+    {
+      "name": "juxtopposed-design",
+      "source": "./",
+      "description": "Opinionated UI/UX design skill inspired by Juxtopposed: Observe. Oppose. Upscale."
+    }
+  ]
+}
